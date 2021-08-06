@@ -3,11 +3,11 @@ using namespace std;
 
 class FRACTION //Phan So
 {
-    float a, b;
+    int a, b;
 
     public:
         FRACTION();
-        FRACTION(float a, float b);
+        FRACTION(int a, int b);
         ~FRACTION();
         void Input();//Nhap
         void Output();//Xuat
@@ -20,7 +20,7 @@ FRACTION::FRACTION()
     b = 1;
 }
 
-FRACTION::FRACTION(float a, float b)
+FRACTION::FRACTION(int a, int b)
 {
     this->a = a;
     this->b = b;
@@ -49,14 +49,48 @@ void FRACTION::Output()
     }
     else
     {
-        cout << a << "/" << b << endl;
+        if(a == 0)
+        {
+            cout << 0 << endl;
+            return;
+        }
+        
+        if(b == 1)
+        {
+            cout << a << endl;
+            return;
+        }
+        
+        if(b == -1)
+        {
+            if(a > 0)
+            {
+                cout << "-" << a << endl;
+            }
+            else
+            {
+                cout << abs(a) << endl;
+            }
+            return;
+        }
+        
+        if(a * b <= 0)
+        {
+            cout << "-" << abs(a) << "/" << abs(b) << endl;
+            return;
+        }
+
+        cout << abs(a) << "/" << abs(b) << endl;
     }
 }
 
 void FRACTION::Simplify_Fraction()
 {
-    float temp_a = a, temp_b = b;
+    int temp_a = a, temp_b = b;
 
+    temp_a = abs(temp_a);
+    temp_b = abs(temp_b);
+    
     while (temp_a != temp_b)
     {
         if(temp_a > temp_b)
@@ -79,8 +113,8 @@ int main()
     cout << "Phan So P: ";
     P.Output();
 
-    // cout << "Nhap Phan So Q: " << endl;
-    // Q.INPUT();
+    cout << "Nhap Phan So Q: " << endl;
+    Q.Input();
 
     Q.Simplify_Fraction();
 
